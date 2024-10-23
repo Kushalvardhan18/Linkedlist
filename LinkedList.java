@@ -52,7 +52,7 @@ public class LinkedList {
             System.out.print(temp.data + " ");
             temp = temp.next;
         }
-        System.out.print("Null");
+        System.out.println("Null");
     }
 
     public  void addNode(int index, int data) {
@@ -110,6 +110,18 @@ public class LinkedList {
         return val;
 
     }
+    public static int findKeyIndex(int key){
+        Node temp = head;
+        int i=0;
+        while(temp != null){
+            if(temp.data == key){
+                return i;
+            }
+            i++;
+            temp = temp.next;
+        }
+        return -1;
+    }
     public static void main(String[] args) {
         LinkedList ll = new LinkedList();
         ll.addFirst(3);
@@ -119,12 +131,15 @@ public class LinkedList {
         ll.addLast(5);
 //        printLL(ll);
         ll.addNode(0, 100);
-        printLL(ll);
+//        printLL(ll);
 //        System.out.println(ll.size);
         ll.removeFirst();
-        printLL(ll);
+//        printLL(ll);
         ll.removeLast();
         printLL(ll);
-        System.out.println(ll.size);
+//        System.out.println(ll.size);
+        int key =4;
+        System.out.println( findKeyIndex(key));
+
     }
 }
