@@ -138,6 +138,38 @@ public class LinkedList {
     public  int recursiveSearch(int key){
         return helper(head,key);
     }
+    public void reverse(){
+        Node prev = null;
+        Node curr = tail =head;
+        while(curr !=null){
+            Node next = curr.next;
+            curr.next = prev;
+           prev = curr;
+           curr = next;
+        }
+        head = prev;
+
+    }
+    public void deleteNthNode(int n){
+        int sz =0;
+        Node temp = head;
+        while(temp != null){
+            temp = temp.next;
+            sz++;
+        }
+        if(n ==sz){
+            head = head.next;
+            return;
+        }
+        int i=1;
+        int idx= sz-n;
+        Node prev = head;
+        while(i<idx){
+            prev = prev.next;
+        }
+        prev.next = prev.next.next;
+        return;
+    }
     public static void main(String[] args) {
         LinkedList ll = new LinkedList();
         ll.addFirst(3);
@@ -157,6 +189,9 @@ public class LinkedList {
         int key =3;
         System.out.println( findKeyIndex(key));
         System.out.println(ll.recursiveSearch(3));
-
+        ll.reverse();
+        printLL(ll);
+        ll.deleteNthNode(3);
+        printLL(ll);
     }
 }
