@@ -12,11 +12,20 @@ public class DetectCycle {
     public static void main(String[] args) {
         ListNode head = createLinkedListWithCycle();
 
-        // Test the linked list with your cycle detection method
+        // Check if a cycle exists and remove it if present
         if (hasCycle(head)) {
             System.out.println("The linked list contains a cycle.");
+            removeCycle(head);
+            System.out.println("Cycle removed.");
         } else {
             System.out.println("The linked list does not contain a cycle.");
+        }
+
+        // Re-check for cycle to verify removal
+        if (hasCycle(head)) {
+            System.out.println("The cycle was not removed.");
+        } else {
+            System.out.println("The linked list is now cycle-free.");
         }
     }
 
@@ -53,5 +62,49 @@ public class DetectCycle {
             }
         }
         return false;
+    }
+
+    // Method to remove the cycle from the linked list
+    public static void removeCycle(ListNode head) {
+        if (head == null || head.next == null) {
+            return;
+        }
+
+        ListNode slow = head;
+        ListNode fast = head;
+        boolean cycleDetected = false;
+
+        // Detect cycle and find the meeting point of slow and fast pointers
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if (slow == fast) {
+                cycleDetected = true;
+                break;
+            }
+        }
+
+        // If a cycle was detected, find the start of the cycle
+        if (cycleDetected) {
+            slow = head;
+            ListNode prev = null;
+
+            // Special case: if the cycle starts at the head
+            if (slow == fast) {
+                while (fast.next != slow) {
+                    fast = fast.next;
+                }
+            } else {
+                // Move both pointers at the same pace to find the cycle start
+                while (slow.next != fast.next) {
+                    slow = slow.next;
+                    fast = fast.next;
+                }
+            }
+
+            // Break the cycle
+            fast.next = null;
+        }
     }
 }
