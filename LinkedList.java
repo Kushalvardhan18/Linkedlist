@@ -162,7 +162,7 @@ public class LinkedList {
             return;
         }
         int i=1;
-        int idx= sz-n;
+        int idx= sz-n;   
         Node prev = head;
         while(i<idx){
             prev = prev.next;
