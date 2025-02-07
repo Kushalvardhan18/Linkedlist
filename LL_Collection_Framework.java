@@ -4,7 +4,6 @@ public class LL_Collection_Framework {
     public static void main(String[] args){
         //create
         LinkedList<Integer> myList = new LinkedList<>();
-
         //add
         myList.addLast(1);
         myList.addLast(2);
