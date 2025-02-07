@@ -43,7 +43,7 @@ public class LinkedList {
 
     }
 
-    public  static void printLL(LinkedList gitll) {
+    public  static void printLL(LinkedList ll) {
         if (head == null) {
             System.out.println("Linked list is empty ");
         }
